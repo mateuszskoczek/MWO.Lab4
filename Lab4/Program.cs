@@ -12,6 +12,7 @@
             Console.WriteLine();
             Console.WriteLine($"a + b = {Calculator.Sum(a, b)}");
             Console.WriteLine($"a + b = {Calculator.Multiply(a, b)}");
+            Console.WriteLine($"a / b = {Calculator.Divide(a, b)}");
         }
     }
 }
