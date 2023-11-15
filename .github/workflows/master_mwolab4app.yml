@@ -9,8 +9,8 @@ on:
       - master
   workflow_dispatch:
 
-jobs:
-  version:
+jobs:      
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -25,16 +25,7 @@ jobs:
           echo "::set-output name=fragment::$number"
       - name: Change version
         run: sed -i "s/\(<AssemblyVersion>\([0-9]\+\.\)\([0-9]\+\.\)\{2\}\)\([0-9]\+\)/\1${{steps.split.outputs.fragment}}/" ./Lab4/Lab4.csproj
-      - uses: stefanzweifel/git-auto-commit-action@v4          
-  build:
-    runs-on: windows-latest
-    needs: version
-    steps:
-      - uses: actions/checkout@v4
-      - uses: kzrnm/get-net-sdk-project-versions-action@v1
-        id: get-version
-        with:
-          proj-path: ./Lab4/Lab4.csproj
+      - uses: stefanzweifel/git-auto-commit-action@v4  
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
