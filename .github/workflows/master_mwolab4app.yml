@@ -18,11 +18,14 @@ jobs:
         id: get-version
         with:
           proj-path: ./Lab4/Lab4.csproj
-      - run: echo "${{steps.get-version.outputs.assembly-version}}"
+      - name: Get number
+        id: split
+        run: echo "::set-output name=fragment::${echo ${{steps.get-version.outputs.assembly-version}} | grep -Eo '[0-9]+$'}"
+      - run: echo ${{steps.split.outputs.fragment}}
           
   build:
     runs-on: windows-latest
-
+    needs: version
     steps:
       - uses: actions/checkout@v4
 
