@@ -17,7 +17,7 @@ jobs:
       - uses: kzrnm/get-net-sdk-project-versions-action@v1
         id: get-version
         with:
-          proj-path: /Lab4/Lab4.csproj
+          proj-path: ./Lab4/Lab4.csproj
       - run: echo "${{steps.get-version.outputs.assembly-version}}"
           
   build:
