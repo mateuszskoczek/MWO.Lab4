@@ -24,5 +24,22 @@ namespace Lab4.Test
         {
             Assert.AreEqual(result, Calculator.Multiply(a, b));
         }
+
+        [DataRow(2, 2, 1)]
+        [DataRow(8, 4, 2)]
+        [DataTestMethod]
+        public void DivisionTest(int a, int b, int result)
+        {
+            Assert.AreEqual(result, Calculator.Divide(a, b));
+        }
+
+        [DataRow(2)]
+        [DataRow(3)]
+        [DataTestMethod]
+        [ExpectedException(typeof(DivideByZeroException))]
+        public void DivisionByZeroTest(int a)
+        {
+            Calculator.Divide(a, 0);
+        }
     }
 }
