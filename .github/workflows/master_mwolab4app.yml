@@ -21,7 +21,7 @@ jobs:
       - name: Get number
         id: split
         run: |
-          export number=${echo ${{steps.get-version.outputs.assembly-version}} | grep -Eo '[0-9]+$'}
+          export number=$(echo ${{steps.get-version.outputs.assembly-version}} | grep -Eo '[0-9]+$')
           echo "::set-output name=fragment::$number"
       - run: echo ${{steps.split.outputs.fragment}}
           
