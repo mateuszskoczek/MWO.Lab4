@@ -20,7 +20,9 @@ jobs:
           proj-path: ./Lab4/Lab4.csproj
       - name: Get number
         id: split
-        run: echo "::set-output name=fragment::${echo ${{steps.get-version.outputs.assembly-version}} | grep -Eo '[0-9]+$'}"
+        run: |
+          export number=${echo ${{steps.get-version.outputs.assembly-version}} | grep -Eo '[0-9]+$'}
+          echo "::set-output name=fragment::$number"
       - run: echo ${{steps.split.outputs.fragment}}
           
   build:
